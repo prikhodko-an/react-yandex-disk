@@ -32,7 +32,12 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,json,ts,tsx,css,scss,md}": [
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "tslint --fix",
+      "git add"
+    ],
+    "*.{js,jsx,json,css,scss,md}": [
       "prettier --write",
       "git add"
     ]
