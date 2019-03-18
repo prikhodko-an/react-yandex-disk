@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "extends": ["tslint:recommended", "tslint-react"],
   "rules": {
     "indent": {
       "options": [true, "spaces", 2]
@@ -23,7 +23,13 @@
         "esSpecCompliant": true
       }
     ],
-    "quotemark": [true, "single", "jsx-double", "avoid-escape", "avoid-template"],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double",
+      "avoid-escape",
+      "avoid-template"
+    ],
     "member-access": false,
     "no-empty-interface": false,
     "no-namespace": false,
@@ -31,7 +37,12 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "semicolon": [true, "ignore-bound-class-methods"],
-    "typedef": [true, "parameter", "property-declaration", "member-variable-declaration"],
+    "typedef": [
+      true,
+      "parameter",
+      "property-declaration",
+      "member-variable-declaration"
+    ],
     "whitespace": [
       true,
       "check-branch",
