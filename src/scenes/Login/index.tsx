@@ -25,7 +25,9 @@ interface IProps extends IStateProps, IDispatchProps, RouteComponentProps {}
 class Login extends PureComponent<IProps> {
   componentDidMount() {
     if (this.props.location.hash) {
-      const token = (/access_token=([^&]+)/ as any).exec(document.location.hash)[1];
+      const token = (/access_token=([^&]+)/ as any).exec(
+        document.location.hash
+      )[1];
       if (token) {
         localStorage.setItem('yandexAuthToken', token);
         this.props.login();
@@ -44,8 +46,13 @@ class Login extends PureComponent<IProps> {
         <Card className={styles.card}>
           <Card.Header as="h4">Вход</Card.Header>
           <Card.Body>
-            <Card.Text>Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:</Card.Text>
-            <Button variant="warning" href={`${YANDEX_OAUTH_URL}?response_type=token&client_id=${APP_CLIENT_ID}`}>
+            <Card.Text>
+              Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:
+            </Card.Text>
+            <Button
+              variant="warning"
+              href={`${YANDEX_OAUTH_URL}?response_type=token&client_id=${APP_CLIENT_ID}`}
+            >
               Вход через Yandex
             </Button>
           </Card.Body>
