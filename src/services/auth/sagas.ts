@@ -6,7 +6,7 @@ import { YANDEX_PASSPORT_URL } from '../config.json';
 
 function* login() {
   try {
-    const user = yield call(api, YANDEX_PASSPORT_URL);
+    const user = yield call(api.get, YANDEX_PASSPORT_URL);
     if (user) {
       yield put(actions.loginSuccess(user.data));
     } else {

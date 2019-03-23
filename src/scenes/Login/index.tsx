@@ -1,20 +1,26 @@
 import React, { PureComponent } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 import { login } from '../../services/auth/actions';
-import { APP_CLIENT_ID } from '../../services/config.json';
+import { selectAuth } from '../../services/auth/selectors';
+import { IAuthState } from '../../services/auth/models';
+import { APP_CLIENT_ID, YANDEX_OAUTH_URL } from '../../services/config.json';
 
 import styles from './index.module.scss';
 
+interface IStateProps {
+  auth: IAuthState;
+}
 interface IDispatchProps {
   login: () => void;
 }
 
-interface IProps extends IDispatchProps, RouteComponentProps {}
+interface IProps extends IStateProps, IDispatchProps, RouteComponentProps {}
 
 class Login extends PureComponent<IProps> {
   componentDidMount() {
@@ -28,16 +34,18 @@ class Login extends PureComponent<IProps> {
   }
 
   render() {
+    const { isAuthenticated } = this.props.auth;
+    if (isAuthenticated) {
+      return <Redirect to="/disk" />;
+    }
+
     return (
       <Container>
         <Card className={styles.card}>
           <Card.Header as="h4">Вход</Card.Header>
           <Card.Body>
             <Card.Text>Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:</Card.Text>
-            <Button
-              variant="warning"
-              href={`https://oauth.yandex.ru/authorize?response_type=token&client_id=${APP_CLIENT_ID}`}
-            >
+            <Button variant="warning" href={`${YANDEX_OAUTH_URL}?response_type=token&client_id=${APP_CLIENT_ID}`}>
               Вход через Yandex
             </Button>
           </Card.Body>
@@ -47,11 +55,15 @@ class Login extends PureComponent<IProps> {
   }
 }
 
+const mapStateToProps = createStructuredSelector<any, IStateProps>({
+  auth: selectAuth,
+});
+
 const mapDispatchToProps = {
   login,
 };
 
-export default connect<{}, IDispatchProps>(
-  null,
+export default connect<IStateProps, IDispatchProps>(
+  mapStateToProps,
   mapDispatchToProps
 )(Login);
