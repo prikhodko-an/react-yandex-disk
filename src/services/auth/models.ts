@@ -12,5 +12,5 @@ export interface IUser {
 export interface IAuthState {
   isLoading: boolean;
   isAuthenticated: boolean;
-  user: IUser | undefined;
+  user: IUser;
 }

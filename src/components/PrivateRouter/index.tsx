@@ -8,7 +8,7 @@ import { IAuthState } from '../../services/auth/models';
 
 interface IProps {
   component: any;
-  auth: IAuthState;
+  auth?: IAuthState;
   path: string;
 }
 

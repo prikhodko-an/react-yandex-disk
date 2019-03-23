@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 
 import auth from '../auth/reducer';
+import disk from '../../scenes/Disk/services/reducer';
 import { IStoreState } from './models';
 
 const rootReducer = combineReducers<IStoreState>({
   auth,
-} as any);
+  disk,
+});
 
 export default rootReducer;

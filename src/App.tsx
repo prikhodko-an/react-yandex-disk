@@ -12,7 +12,6 @@ const App = () => {
       <Header />
       <Switch>
         <Route path="/login" component={Login} />
-        // @ts-ignore
         <PrivateRouter path="/disk" component={Disk} />
         <Redirect to="/login" />
       </Switch>
