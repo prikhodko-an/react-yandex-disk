@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 
+import Spinner from '../../components/Spinner';
 import DiskItem from './components/DiskItem';
 import { getFolder } from './services/actions';
 import { IDiskState, IDiskItem } from './services/models';
@@ -32,14 +33,19 @@ class Disk extends PureComponent<IProps> {
   render() {
     const {
       folder: { items },
+      isLoading,
     } = this.props.disk;
 
     return (
       <Container>
         <Card>
-          {items.map((item: IDiskItem) => (
-            <DiskItem item={item} key={item.resource_id} />
-          ))}
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            items.map((item: IDiskItem) => (
+              <DiskItem item={item} key={item.resource_id} />
+            ))
+          )}
         </Card>
       </Container>
     );

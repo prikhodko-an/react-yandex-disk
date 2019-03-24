@@ -14,6 +14,12 @@ const initialState: IDiskState = {
 };
 
 const reducer = {
+  [actions.getFolder.toString()]: (state: IDiskState): IDiskState => {
+    return {
+      ...initialState,
+      isLoading: true,
+    };
+  },
   [actions.getFolderSuccess.toString()]: (
     state: IDiskState,
     { payload: folder }: Action<IDiskFolder>
