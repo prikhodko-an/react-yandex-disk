@@ -13,6 +13,12 @@ const initialState: IAuthState = {
 };
 
 const reducer = {
+  [actions.login.toString()]: (state: IAuthState): IAuthState => {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  },
   [actions.loginSuccess.toString()]: (
     state: IAuthState,
     { payload: user }: Action<IUser>
@@ -20,6 +26,7 @@ const reducer = {
     return {
       ...state,
       isAuthenticated: true,
+      isLoading: false,
       user,
     };
   },

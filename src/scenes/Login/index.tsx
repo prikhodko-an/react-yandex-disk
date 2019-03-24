@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { login } from '../../services/auth/actions';
 import { selectAuth } from '../../services/auth/selectors';
 import { IAuthState } from '../../services/auth/models';
+import Spinner from '../../components/Spinner';
 import { APP_CLIENT_ID, YANDEX_OAUTH_URL } from '../../services/config.json';
 
 interface IStateProps {
@@ -33,7 +34,7 @@ class Login extends PureComponent<IProps> {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated, isLoading } = this.props.auth;
     if (isAuthenticated) {
       return <Redirect to="/disk" />;
     }
@@ -42,15 +43,21 @@ class Login extends PureComponent<IProps> {
       <>
         <Card.Header>Вход</Card.Header>
         <Card.Body>
-          <Card.Text>
-            Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:
-          </Card.Text>
-          <Button
-            variant="warning"
-            href={`${YANDEX_OAUTH_URL}?response_type=token&client_id=${APP_CLIENT_ID}`}
-          >
-            Вход через Yandex
-          </Button>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <>
+              <Card.Text>
+                Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:
+              </Card.Text>
+              <Button
+                variant="warning"
+                href={`${YANDEX_OAUTH_URL}?response_type=token&client_id=${APP_CLIENT_ID}`}
+              >
+                Вход через Yandex
+              </Button>
+            </>
+          )}
         </Card.Body>
       </>
     );

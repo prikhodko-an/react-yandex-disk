@@ -7,6 +7,7 @@ const api: IApiInstance = axios.create({
   baseURL: YANDEX_DISK_URL,
 });
 
+// add auth header to each API request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('yandexAuthToken');
   if (token) {
