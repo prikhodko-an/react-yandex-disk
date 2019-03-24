@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 
 import { login } from '../../services/auth/actions';
 import { selectAuth } from '../../services/auth/selectors';
@@ -34,7 +35,7 @@ class Login extends PureComponent<IProps> {
   }
 
   render() {
-    const { isAuthenticated, isLoading } = this.props.auth;
+    const { isAuthenticated, isLoading, error } = this.props.auth;
     if (isAuthenticated) {
       return <Redirect to="/disk" />;
     }
@@ -48,14 +49,19 @@ class Login extends PureComponent<IProps> {
           ) : (
             <>
               <Card.Text className="pt-4">
-                Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:
+                Войдите, чтобы начать работать с вашим Яндекс Диском:
               </Card.Text>
               <Button
                 variant="warning"
                 href={`${YANDEX_OAUTH_URL}?response_type=token&client_id=${APP_CLIENT_ID}`}
               >
-                Вход через Yandex
+                Вход
               </Button>
+              {error && (
+                <Alert variant="danger" className="mt-4">
+                  Упс! Что-то пошло не так, попробуйте еще раз.
+                </Alert>
+              )}
             </>
           )}
         </Card.Body>

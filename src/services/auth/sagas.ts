@@ -10,11 +10,9 @@ export function* login() {
     const user = yield call(api.get, YANDEX_PASSPORT_URL);
     if (user) {
       yield put(actions.loginSuccess(user.data));
-    } else {
-      // TODO: handle error
     }
   } catch (e) {
-    // console.log(e); // TODO: handle error
+    yield put(actions.loginFailed());
   }
 }
 

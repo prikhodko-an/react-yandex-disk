@@ -7,6 +7,7 @@ const initialState: IAuthState = {
   isRestoreCurrentUser: false,
   isLoading: false,
   isAuthenticated: false,
+  error: false,
   user: {
     display_name: '',
     real_name: '',
@@ -36,6 +37,14 @@ const reducer = {
       isRestoreCurrentUser: false,
       isLoading: false,
       user,
+    };
+  },
+  [actions.loginFailed.toString()]: (state: IAuthState): IAuthState => {
+    return {
+      ...state,
+      isRestoreCurrentUser: false,
+      isLoading: false,
+      error: true,
     };
   },
   [actions.logout.toString()]: (state: IAuthState): IAuthState => {
