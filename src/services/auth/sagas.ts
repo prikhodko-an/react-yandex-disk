@@ -4,8 +4,9 @@ import * as actions from './actions';
 import api from '../api';
 import { YANDEX_PASSPORT_URL } from '../config.json';
 
-function* login() {
+export function* login() {
   try {
+    // get user info from Yandex Passport API
     const user = yield call(api.get, YANDEX_PASSPORT_URL);
     if (user) {
       yield put(actions.loginSuccess(user.data));

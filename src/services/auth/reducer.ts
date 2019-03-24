@@ -4,6 +4,7 @@ import { IAuthState, IUser } from './models';
 import * as actions from './actions';
 
 const initialState: IAuthState = {
+  isRestoreCurrentUser: false,
   isLoading: false,
   isAuthenticated: false,
   user: {
@@ -13,6 +14,12 @@ const initialState: IAuthState = {
 };
 
 const reducer = {
+  [actions.restoreCurrentUser.toString()]: (state: IAuthState): IAuthState => {
+    return {
+      ...state,
+      isRestoreCurrentUser: true,
+    };
+  },
   [actions.login.toString()]: (state: IAuthState): IAuthState => {
     return {
       ...state,
@@ -26,6 +33,7 @@ const reducer = {
     return {
       ...state,
       isAuthenticated: true,
+      isRestoreCurrentUser: false,
       isLoading: false,
       user,
     };

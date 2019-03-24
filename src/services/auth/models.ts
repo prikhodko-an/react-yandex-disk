@@ -10,6 +10,7 @@ export interface IUser {
 }
 
 export interface IAuthState {
+  isRestoreCurrentUser: boolean;
   isLoading: boolean;
   isAuthenticated: boolean;
   user: IUser;

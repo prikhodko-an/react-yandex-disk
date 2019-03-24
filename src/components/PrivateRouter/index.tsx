@@ -6,9 +6,12 @@ import { createStructuredSelector } from 'reselect';
 import { selectAuth } from '../../services/auth/selectors';
 import { IAuthState } from '../../services/auth/models';
 
-interface IProps extends RouteComponentProps {
-  component: React.ComponentClass<RouteComponentProps>;
+interface IStateProps {
   auth: IAuthState;
+}
+
+interface IProps extends IStateProps, RouteComponentProps {
+  component: React.ComponentClass<RouteComponentProps>;
   path: string;
 }
 
@@ -30,8 +33,8 @@ const PrivateRoute = ({
   />
 );
 
-const mapStateToProps = createStructuredSelector<any, any>({
+const mapStateToProps = createStructuredSelector<any, IStateProps>({
   auth: selectAuth,
 });
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect<IStateProps, {}>(mapStateToProps)(PrivateRoute);
