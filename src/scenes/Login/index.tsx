@@ -24,9 +24,7 @@ interface IProps extends IStateProps, IDispatchProps, RouteComponentProps {}
 class Login extends PureComponent<IProps> {
   componentDidMount() {
     if (this.props.location.hash) {
-      const token = (/access_token=([^&]+)/ as any).exec(
-        document.location.hash
-      )[1];
+      const token = /access_token=([^&]+)/.exec(document.location.hash)[1];
       if (token) {
         localStorage.setItem('yandexAuthToken', token);
         this.props.login();
