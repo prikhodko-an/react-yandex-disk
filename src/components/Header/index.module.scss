@@ -4,5 +4,24 @@
   display: flex;
   align-items: center;
 
-  border-bottom: 1px solid #ccc;
+  background: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.userData {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 55px;
+}
+
+.userName {
+  margin-right: 15px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  white-space: nowrap;
 }
