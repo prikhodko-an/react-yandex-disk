@@ -4,16 +4,20 @@
 
   padding: 10px 20px;
 
+  min-height: 60px;
+
   &:hover {
     background: #f8f9fa;
   }
 }
 
-.folderIcon {
-  width: 40px;
-  height: 40px;
+.previewImg {
+  margin-right: 20px;
 }
 
-.itemInfo {
-  padding-left: 20px;
+.folderIcon {
+  @extend .previewImg;
+
+  width: 40px;
+  height: 40px;
 }

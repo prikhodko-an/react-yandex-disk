@@ -10,22 +10,32 @@ interface IProps {
 }
 
 const DiskItem = ({ item }: IProps) => {
+  let content;
+
   if (item.type === 'dir') {
     const path = item.path.replace('disk:', '/disk');
-    return (
+    content = (
       <Link to={path} className={styles.item}>
         <img className={styles.folderIcon} src={folder} alt="Папка" />
         <div className={styles.itemInfo}>{item.name}</div>
       </Link>
     );
   } else {
-    return (
+    content = (
       <div className={styles.item}>
-        {item.preview && <img src={item.preview} alt={item.name} />}
+        {item.preview && (
+          <img
+            className={styles.previewImg}
+            src={item.preview}
+            alt={item.name}
+          />
+        )}
         <div className={styles.itemInfo}>{item.name}</div>
       </div>
     );
   }
+
+  return content;
 };
 
 export default DiskItem;
