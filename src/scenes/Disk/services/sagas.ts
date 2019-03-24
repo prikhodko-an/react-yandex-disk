@@ -21,7 +21,7 @@ function* getFolder({ payload: path }: Action<string>) {
   try {
     const response = yield call(
       api.get,
-      `resources?path=${path}&fields=${fields}&preview_crop=true&preview_size=x40`
+      `resources?path=${path}&fields=${fields}&limit=9999&preview_crop=true&preview_size=x40`
     );
 
     const {
