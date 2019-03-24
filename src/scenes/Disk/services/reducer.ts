@@ -1,7 +1,8 @@
 import { handleActions, Action } from 'redux-actions';
 
 import { IDiskState, IDiskFolder } from './models';
-import * as actions from './actions';
+import * as disAactions from './actions';
+import * as authActions from '../../../services/auth/actions';
 
 const initialState: IDiskState = {
   isLoading: false,
@@ -14,13 +15,13 @@ const initialState: IDiskState = {
 };
 
 const reducer = {
-  [actions.getFolder.toString()]: (state: IDiskState): IDiskState => {
+  [disAactions.getFolder.toString()]: (state: IDiskState): IDiskState => {
     return {
       ...initialState,
       isLoading: true,
     };
   },
-  [actions.getFolderSuccess.toString()]: (
+  [disAactions.getFolderSuccess.toString()]: (
     state: IDiskState,
     { payload: folder }: Action<IDiskFolder>
   ): IDiskState => {
@@ -29,6 +30,9 @@ const reducer = {
       isLoading: false,
       folder,
     };
+  },
+  [authActions.logout.toString()]: (state: any): any => {
+    return initialState;
   },
 };
 

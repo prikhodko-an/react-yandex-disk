@@ -23,6 +23,9 @@ const reducer = {
       user,
     };
   },
+  [actions.logout.toString()]: (state: IAuthState): IAuthState => {
+    return initialState;
+  },
 };
 
 export default handleActions<IAuthState, IUser>(reducer, initialState);
