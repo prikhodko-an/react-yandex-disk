@@ -18,7 +18,8 @@
     "alwaysStrict": true,
     "strictBindCallApply": true,
     "strictNullChecks": false,
-    "strictFunctionTypes": true
+    "strictFunctionTypes": true,
+    "strict": true
   },
   "include": ["src"]
 }

@@ -1,7 +1,9 @@
 export interface IDiskItem {
+  resource_id: string;
   name: string;
   type: string;
   path: string;
+  preview?: string;
 }
 
 export interface IDiskFolder {

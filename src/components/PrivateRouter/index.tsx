@@ -1,22 +1,31 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { selectAuth } from '../../services/auth/selectors';
 import { IAuthState } from '../../services/auth/models';
 
-interface IProps {
-  component: any;
-  auth?: IAuthState;
+interface IProps extends RouteComponentProps {
+  component: React.ComponentClass<RouteComponentProps>;
+  auth: IAuthState;
   path: string;
 }
 
-const PrivateRoute = ({ component: Component, auth, ...rest }: IProps) => (
+const PrivateRoute = ({
+  component: Component,
+  auth: { isAuthenticated },
+  location: { pathname },
+  ...rest
+}: Partial<IProps>) => (
   <Route
     {...rest}
     render={(props) =>
-      auth.isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
+      isAuthenticated ? (
+        <Component {...props} key={pathname} />
+      ) : (
+        <Redirect to="/login" />
+      )
     }
   />
 );

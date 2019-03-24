@@ -11,8 +11,6 @@ import { selectAuth } from '../../services/auth/selectors';
 import { IAuthState } from '../../services/auth/models';
 import { APP_CLIENT_ID, YANDEX_OAUTH_URL } from '../../services/config.json';
 
-import styles from './index.module.scss';
-
 interface IStateProps {
   auth: IAuthState;
 }
@@ -43,7 +41,7 @@ class Login extends PureComponent<IProps> {
 
     return (
       <Container>
-        <Card className={styles.card}>
+        <Card>
           <Card.Header as="h4">Вход</Card.Header>
           <Card.Body>
             <Card.Text>

@@ -12,8 +12,8 @@ const App = () => {
       <Header />
       <Switch>
         <Route path="/login" component={Login} />
-        <PrivateRouter path="/disk" component={Disk} />
-        <Redirect to="/login" />
+        <PrivateRouter path="/disk/:path?" component={Disk} />
+        <Redirect to="/disk" />
       </Switch>
     </>
   );

@@ -4,14 +4,24 @@ import { Action } from 'redux-actions';
 import * as actions from './actions';
 import api from '../../../services/api';
 
-const fields =
-  'name, type, path, _embedded.items.name, _embedded.items.type, _embedded.items.path';
+const fieldsArray = [
+  'name',
+  'type',
+  'path',
+  '_embedded.items.name',
+  '_embedded.items.type',
+  '_embedded.items.path',
+  '_embedded.items.preview',
+  '_embedded.items.resource_id',
+];
+
+const fields = fieldsArray.join(', ');
 
 function* getFolder({ payload: path }: Action<string>) {
   try {
     const response = yield call(
       api.get,
-      `resources?path=${path}&fields=${fields}`
+      `resources?path=${path}&fields=${fields}&preview_crop=true&preview_size=x40`
     );
 
     const {
