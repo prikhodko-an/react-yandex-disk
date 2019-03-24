@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
 
 import Spinner from '../../components/Spinner';
 import DiskItem from './components/DiskItem';
@@ -37,17 +35,15 @@ class Disk extends PureComponent<IProps> {
     } = this.props.disk;
 
     return (
-      <Container>
-        <Card>
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            items.map((item: IDiskItem) => (
-              <DiskItem item={item} key={item.resource_id} />
-            ))
-          )}
-        </Card>
-      </Container>
+      <>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          items.map((item: IDiskItem) => (
+            <DiskItem item={item} key={item.resource_id} />
+          ))
+        )}
+      </>
     );
   }
 }

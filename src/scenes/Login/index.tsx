@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { RouteComponentProps, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
@@ -40,22 +39,20 @@ class Login extends PureComponent<IProps> {
     }
 
     return (
-      <Container>
-        <Card>
-          <Card.Header as="h4">Вход</Card.Header>
-          <Card.Body>
-            <Card.Text>
-              Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:
-            </Card.Text>
-            <Button
-              variant="warning"
-              href={`${YANDEX_OAUTH_URL}?response_type=token&client_id=${APP_CLIENT_ID}`}
-            >
-              Вход через Yandex
-            </Button>
-          </Card.Body>
-        </Card>
-      </Container>
+      <>
+        <Card.Header as="h4">Вход</Card.Header>
+        <Card.Body>
+          <Card.Text>
+            Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:
+          </Card.Text>
+          <Button
+            variant="warning"
+            href={`${YANDEX_OAUTH_URL}?response_type=token&client_id=${APP_CLIENT_ID}`}
+          >
+            Вход через Yandex
+          </Button>
+        </Card.Body>
+      </>
     );
   }
 }
