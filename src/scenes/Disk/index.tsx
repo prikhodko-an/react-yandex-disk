@@ -2,9 +2,11 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import Card from 'react-bootstrap/Card';
 
 import Spinner from '../../components/Spinner';
 import DiskItem from './components/DiskItem';
+import Breadcrumbs from './components/Breadcrumbs';
 import { getFolder } from './services/actions';
 import { IDiskState, IDiskItem } from './services/models';
 import { selectDisk } from './services/selectors';
@@ -30,12 +32,18 @@ class Disk extends PureComponent<IProps> {
 
   render() {
     const {
-      folder: { items },
-      isLoading,
-    } = this.props.disk;
+      disk: {
+        folder: { items },
+        isLoading,
+      },
+      location: { pathname },
+    } = this.props;
 
     return (
       <>
+        <Card.Header>
+          <Breadcrumbs path={pathname} />
+        </Card.Header>
         {isLoading ? (
           <Spinner />
         ) : (

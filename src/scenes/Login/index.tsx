@@ -40,7 +40,7 @@ class Login extends PureComponent<IProps> {
 
     return (
       <>
-        <Card.Header as="h4">Вход</Card.Header>
+        <Card.Header>Вход</Card.Header>
         <Card.Body>
           <Card.Text>
             Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:
