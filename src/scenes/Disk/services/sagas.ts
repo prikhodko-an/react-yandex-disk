@@ -19,11 +19,13 @@ const fields = fieldsArray.join(', ');
 
 function* getFolder({ payload: path }: Action<string>) {
   try {
+    // get folder from Yandex Disk API
     const response = yield call(
       api.get,
       `resources?path=${path}&fields=${fields}&limit=9999&preview_crop=true&preview_size=x40`
     );
 
+    // process response data
     const {
       _embedded: { items },
       ...rest
@@ -34,9 +36,10 @@ function* getFolder({ payload: path }: Action<string>) {
       ...rest,
     };
 
+    // send folder to store
     yield put(actions.getFolderSuccess(folder));
   } catch (e) {
-    // console.log(e); // TODO: handle error
+    yield put(actions.getFolderFailed(e.response.data));
   }
 }
 

@@ -16,4 +16,11 @@ export interface IDiskFolder {
 export interface IDiskState {
   isLoading: boolean;
   folder: IDiskFolder;
+  error: IDiskError;
+}
+
+export interface IDiskError {
+  message: string;
+  description: string;
+  error: string;
 }

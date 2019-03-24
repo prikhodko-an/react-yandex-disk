@@ -9,7 +9,7 @@ interface IProps {
   item: IDiskItem;
 }
 
-const DiskItem = ({ item }: IProps) => {
+const Item = ({ item }: IProps) => {
   let content;
 
   if (item.type === 'dir') {
@@ -38,4 +38,4 @@ const DiskItem = ({ item }: IProps) => {
   return content;
 };
 
-export default DiskItem;
+export default Item;

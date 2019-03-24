@@ -5,10 +5,10 @@ import { createStructuredSelector } from 'reselect';
 import Card from 'react-bootstrap/Card';
 
 import Spinner from '../../components/Spinner';
-import DiskItem from './components/DiskItem';
+import List from './components/List';
 import Breadcrumbs from './components/Breadcrumbs';
 import { getFolder } from './services/actions';
-import { IDiskState, IDiskItem } from './services/models';
+import { IDiskState } from './services/models';
 import { selectDisk } from './services/selectors';
 
 interface IStateProps {
@@ -35,6 +35,7 @@ class Disk extends PureComponent<IProps> {
       disk: {
         folder: { items },
         isLoading,
+        error,
       },
       location: { pathname },
     } = this.props;
@@ -44,13 +45,7 @@ class Disk extends PureComponent<IProps> {
         <Card.Header>
           <Breadcrumbs path={pathname} />
         </Card.Header>
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          items.map((item: IDiskItem) => (
-            <DiskItem item={item} key={item.resource_id} />
-          ))
-        )}
+        {isLoading ? <Spinner /> : <List items={items} error={error.message} />}
       </>
     );
   }

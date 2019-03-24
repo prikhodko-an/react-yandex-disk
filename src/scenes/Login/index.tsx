@@ -42,12 +42,12 @@ class Login extends PureComponent<IProps> {
     return (
       <>
         <Card.Header>Вход</Card.Header>
-        <Card.Body>
+        <Card.Body className="pt-0">
           {isLoading ? (
             <Spinner />
           ) : (
             <>
-              <Card.Text>
+              <Card.Text className="pt-4">
                 Войдите, чтобы просмотреть содержимое вашего Яндекс Диска:
               </Card.Text>
               <Button
